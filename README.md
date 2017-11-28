@@ -107,7 +107,16 @@ except KeyboardInterrupt:
 
 [The topic of switch bouncing is super interesting!](https://www.allaboutcircuits.com/technical-articles/switch-bounce-how-to-deal-with-it/)
 
+## Install Rust:
+
+```
+curl -s https://static.rust-lang.org/rustup.sh | sh -s -- --channel=nightly
+```
+
 ## Setting up the Geeny API
+
+
+Clone repository `https://github.com/geeny/linux-hub-sdk.git`
 
 ```
 cp ./geeny_hub_service.mvdb.json.example ./geeny_hub_service.mvdb.json
@@ -116,9 +125,12 @@ cp ./geeny_hub_service.mvdb.json.example ./geeny_hub_service.mvdb.json
 Modify all the paths so the point to real paths.
 
 ```
+cargo run --bin hub-service --features="rest-service"
+# Or
 cargo run --release --bin hub-service --features="rest-service"
 ```
 ## Authenticate
+
 curl -H "Content-Type: application/json" -X POST -d '{"email":"diego@geeny.io","password":"password"}' http://localhost:9000/api/v1/login
 
 ## Create Thing
