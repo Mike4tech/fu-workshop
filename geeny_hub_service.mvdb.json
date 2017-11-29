@@ -1,0 +1,22 @@
+{
+    "sdk": {
+        "api": {
+            "host": "https://labs.geeny.io",
+            "port": 443
+        },
+        "connect_api": {
+            "host": "https://connect.geeny.io",
+            "port": 443
+        },
+        "element_file": "/home/pi/elements.mvdb.json",
+        "geeny_creds_file": "/home/pi/credentials.mvdb.json",
+        "mqtt_cert_path": "/home/pi/certificates",
+        "mqtt_host": "mqtt.geeny.io",
+        "mqtt_port": 8883
+    },
+    "ipc": {
+        "address": "localhost",
+        "port": 9000,
+        "workers": 8
+    }
+}
