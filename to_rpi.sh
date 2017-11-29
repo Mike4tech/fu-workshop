@@ -5,9 +5,6 @@ RPI_PATH=$2
 
 BINARY_PATH=hub-sdk/target/armv7-unknown-linux-gnueabihf/release/hub-service
 CONFIG_PATH=hub-sdk/geeny_hub_service.mvdb.json
-CREDENTIALS_PATH=hub-sdk/credentials.mvdb.json
-ELEMENTS_PATH=hub-sdk/elements.mvdb.json
-CERTIFICATES_PATH=hub-sdk/certificates
 
 if [ -z $RPI_PATH ]; then
     RPI_PATH="~/"
@@ -26,8 +23,5 @@ else
     scp -r \
         "$BINARY_PATH"\
 	"$CONFIG_PATH"\
-	"$CREDENTIALS_PATH"\
-	"$ELEMENTS_PATH"\
-	"$CERTIFICATES_PATH"\
 	"$HOST_PATH"
 fi
