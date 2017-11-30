@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Make a Button Workshop!</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/geeny.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <div class="reveal">
+      <div class="slides">
+        <section data-background="images/logo.svg" data-background-size="15%" data-background-position="30px">
+	  <h1>Make your own Button!</h1>
+	  <small>Diego Echeverri - @diegoeche - <mailto>diego@geeny.io</mailto> </small>
+        </section>
+
+        <section>
+	  <section>
+	    <h1>Who am I?</h1>
+    	    <ol>
+	      <li class="fragment">Backend Engineer</li>
+              <li class="fragment">Maker Wannabe</li>
+    	    </ol>
+	  </section>
+
+	  <section>
+	    <h1>This Presentation</h1>
+    	    <ol>
+	      <li class="fragment">What is IoT?</li>
+              <li class="fragment">Make a Button</li>
+              <li class="fragment">Connect the Button to Geeny</li>
+    	    </ol>
+	  </section>
+        </section>
+
+	<section>
+	  <section>
+	    <h1>What is IoT?</h1>
+	  </section>
+
+	  <section>
+	    <h1>Cheap Silicon + Low Power + Internet</h1>
+	    <h1> = IoT </h1>
+	  </section>
+
+	  <section>
+	    <h1>Raspberry PI Zero W</h1>
+    	    <ul>
+	      <li class="fragment">Wifi</li>
+              <li class="fragment">512MB</li>
+              <li class="fragment">GPIO</li>
+   	      <li class="fragment">$10</li>
+	    </ul>
+	  </section>
+
+          <section data-background="images/esp8266.png">
+          </section>
+
+          <section data-background="images/orange_pi.png">
+          </section>
+
+          <section>
+	    <h1>Dumb things (sensors/lights/relays)</h1>
+	    <h2>can now have Internet Connectivity</h2>
+	  </section>
+	</section>
+
+	<section>
+	  <section>
+	    <h1>Why a button?</h1>
+	  </section>
+
+          <section data-background="images/dash-button.jpg">
+	  </section>
+
+          <section data-background="images/limit-switch.jpg">
+	  </section>
+
+          <section data-background="images/limit-switch-2.jpg">
+	  </section>
+
+          <section data-background="images/nuclear-button.jpg">
+	  </section>
+
+	  <section>
+	    <h1>First Version</h1>
+	  </section>
+
+	  <section>
+	    <h1>Gotcha, is really fast</h1>
+	  </section>
+
+	  <section>
+	    <h1>Gotcha (2), bouncing signal</h1>
+	  </section>
+	</section>
+
+	<section>
+	  <section>
+	    <h1>Connect the Button to Geeny</h1>
+	  </section>
+
+	  <section>
+	    <h1>Signup</h1>
+	  </section>
+
+	  <section>
+	    <h1>Login (from the RPI)</h1>
+	  </section>
+
+	  <section>
+	    <h1>Publish a Message</h1>
+	  </section>
+	</section>
+      </div>
+    </div>
+
+    <script>
+      Reveal.initialize({
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+  </body>
+</html>
