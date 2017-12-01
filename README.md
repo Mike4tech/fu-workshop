@@ -201,7 +201,10 @@ curl -X POST \
 
 ## Send Message
 
-curl -H "Content-Type: application/json" -X POST -d '{"msgs":[]}' http://localhost:9000/api/v1/messages/123
+```bash
+curl -H "Content-Type: application/json" -X POST -d '{"msgs":[]}'
+http://localhost:9000/api/v1/messages/123
+```
 
 ## Get your JWT Token:
 
