@@ -148,25 +148,6 @@ except KeyboardInterrupt:
 curl -s https://static.rust-lang.org/rustup.sh | sh -s -- --channel=nightly
 ```
 
-## Setting up the Geeny API
-
-
-Clone repository `https://github.com/geeny/linux-hub-sdk.git`
-
-```
-cp ./geeny_hub_service.mvdb.json.example ./geeny_hub_service.mvdb.json
-```
-
-Modify all the paths so the point to real paths.
-
-```
-cargo run --bin hub-service --features="rest-service"
-# Or
-cargo run --release --bin hub-service --features="rest-service"
-```
-## Authenticate
-
-
 
 ## Create Thing
 
@@ -210,3 +191,32 @@ From
 2. Modify config.txt in the boot partition and add: `dtoverlay=dwc2`
 3. Modify cmdline.txt and add `modules-load=dwc2,g_ether` after `rootwait`
 4. (Optional) create a file called ssh in the boot partition (i.e `touch ssh`)
+
+# Appendix B. Setup Rust for Cross-compilation
+
+## Setup `cross`
+
+```bash
+curl https://sh.rustup.rs -sSf | sh
+rustup component add rust-src
+rustup install nightly-2017-10-25
+rustup target add armv7-unknown-linux-gnueabihf
+cargo install --vers 0.3.8 xargo
+cargo install cross
+```
+
+## Building the API.
+
+Clone repository `https://github.com/geeny/linux-hub-sdk.git`
+
+```bash
+cross build --bin hub-service --release --target armv7-unknown-linux-gnueabihf  --features="rest-service"
+```
+
+## Configuration:
+
+```
+cp ./geeny_hub_service.mvdb.json.example ./geeny_hub_service.mvdb.json
+```
+
+Then, modify all the paths so they point to real paths with the right permissions.
