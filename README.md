@@ -28,8 +28,7 @@ missiles ;)
 
 ## Plugging everything together.
 
-![Schematic](https://raw.github.com/geeny/fu-workshop/master/slides/images/Button-Sketch.png
-"Schematic")
+![Schematic](./slides/images/Button-Sketch.png)
 
 ### First Attempt
 
