@@ -12,11 +12,13 @@ GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 try:
   while True:
-	  # 23 is the pin number based on BCM we wanted.
+      # 23 is the pin number based on BCM we wanted.
       if GPIO.input(23):
           print("Button 1 pressed")
 
 # Takes care of cleaning up after is done
 except KeyboardInterrupt:
-    print "Keyboard Interrupt: Exit"
-    GPIO.cleanup()
+  pass
+finally:
+  print "Exit: Cleanup"
+  GPIO.cleanup()

@@ -10,13 +10,14 @@ def pause():
 try:
   while True:
     if GPIO.input(23):
-        print("Button pressed")
-        while True:
-            if not GPIO.input(23):
-                print("Button released")
-		break
+      print("Button pressed")
+      while GPIO.input(23):
+        pass
+      print("Button released")
     pause()
 
 except KeyboardInterrupt:
-    print "Keyboard Interrupt: Exit"
-    GPIO.cleanup()
+  pass
+finally:
+  print "Exit: Cleanup"
+  GPIO.cleanup()
