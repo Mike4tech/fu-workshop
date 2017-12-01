@@ -26,14 +26,26 @@ missiles ;)
 
 4. Do: `ssh pi@raspberrypi.local`. Password `raspberry`
 
+## Check that the Geeny Hub is running by calling:
+
+`curl -H "Content-Type: application/json"\
+      -X POST -d '{"email":"<your-user>","password":"<your-password>"}'\
+	  http://localhost:9000/api/v1/login`
+
+You can create a Geeny Dev account [here](https://labs.geeny.io/register/developer?next=https%3A%2F%2Fdevelopers.geeny.io%2F)
+
 ## Plugging everything together.
 
-<img src="./slides/images/Button-Sketch.png" width="200"/>
+You will need only 2 cables and a switch button.
 
+- The input goes to the GPIO 23 (i.e second column. 8th row. Counting from top to bottom)
+- And the power (first column, first row)
 
-
+<img src="./slides/images/Button-Sketch.png" width="240"/>
 
 ### First Attempt
+
+Open your favorite editor and copy:
 
 ```python
 # We'll be using the GPIO library to
@@ -60,9 +72,15 @@ except KeyboardInterrupt:
     GPIO.cleanup()
 ```
 
-This program has a small catch. Try it out. What's the issue?
+Copy the program into your RPI Zero:
 
-(The solution is next to this one, don't CHEAT!)
+```bash
+$ scp button.py pi@raspberrypi.local:~/
+$ ssh pi@raspberrypi.local
+$ python button.py
+```
+
+Press the button. What's the behaviour? Anything wrong?
 
 ### Single Event Program (First Attempt)
 
@@ -148,7 +166,7 @@ cargo run --release --bin hub-service --features="rest-service"
 ```
 ## Authenticate
 
-curl -H "Content-Type: application/json" -X POST -d '{"email":"diego@geeny.io","password":"password"}' http://localhost:9000/api/v1/login
+
 
 ## Create Thing
 
