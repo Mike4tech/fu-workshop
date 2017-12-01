@@ -12,9 +12,24 @@ We'll implement a very simple button. What the button does is up to you. If you 
 make it print something on activation, you can also make it launch the zombie killing
 missiles ;)
 
+## Login to your RPI Zero W.
+
+1. Connect the micro-usb cable to the port labeled "USB". Make sure _NOT_ to use the
+   one labeled PWD.
+
+2. You will need Bonjour or similar in your computer. (avahi-daemon in linux)
+
+3. Connect to the USB-Ethernet:
+
+	- Ubuntu: In the network manager connect to the USB wired connection.
+	- Go to NetworkManager, in the tab IPv4-settings set Method to `Link-Local Only`
+
+4. Do: `ssh pi@raspberrypi.local`. Password `raspberry`
+
 ## Plugging everything together.
 
-(TBD: Wiring Diagram)
+![Schematic](https://raw.github.com/geeny/fu-workshop/master/slides/images/Button-Sketch.png
+"Schematic")
 
 ### First Attempt
 
@@ -69,7 +84,7 @@ except KeyboardInterrupt:
     GPIO.cleanup()
 ```
 
-### What happens?
+### What Happens?
 
 There are multiple points on which the conditions are met. Specially shortly after
 the switch button presses against the contact points.
@@ -174,3 +189,4 @@ From
 1. Burn Raspbian into the SD Card
 2. Modify config.txt in the boot partition and add: `dtoverlay=dwc2`
 3. Modify cmdline.txt and add `modules-load=dwc2,g_ether` after `rootwait`
+4. (Optional) create a file called ssh in the boot partition (i.e `touch ssh`)
