@@ -142,45 +142,7 @@ except KeyboardInterrupt:
 
 [The topic of switch bouncing is super interesting!](https://www.allaboutcircuits.com/technical-articles/switch-bounce-how-to-deal-with-it/)
 
-## Install Rust:
 
-```
-curl -s https://static.rust-lang.org/rustup.sh | sh -s -- --channel=nightly
-```
-
-
-## Create Thing
-
-```bash
-curl -X POST \
-    -H 'Content-Type: application/json' \
-    -H 'Accept: application/json' \
-    -d '{
-        "name": "<name-of-your-thing>",
-        "serial_number": "123",
-        "thing_type": "877827cc-0c78-4e55-80fe-2941479c681a"
-        }' \
-    'http://localhost:9000/api/v1/things' > thing.info
-```
-
-## Send Message
-
-curl -H "Content-Type: application/json" -X POST -d '{"msgs":[]}' http://localhost:9000/api/v1/messages/123
-
-# Additional Commands (Maybe needed)
-
-## Get your JWT Token:
-
-```
-curl -X POST \
-    -H 'Content-Type: application/json' \
-    -H 'Accept: application/json' \
-    -d '{
-        "email": "<your-email-address>",
-        "password": "<your-password>"
-        }' \
-    'https://connect.geeny.io/auth/login/' | jq -r '.token' > geeny.token
-```
 
 # Appendix A. Setup USB Internet for Raspberry Pi Zero W
 
@@ -220,3 +182,36 @@ cp ./geeny_hub_service.mvdb.json.example ./geeny_hub_service.mvdb.json
 ```
 
 Then, modify all the paths so they point to real paths with the right permissions.
+
+# Appendix C. API Cheatsheet
+
+## Create Thing
+
+```bash
+curl -X POST \
+    -H 'Content-Type: application/json' \
+    -H 'Accept: application/json' \
+    -d '{
+        "name": "<name-of-your-thing>",
+        "serial_number": "123",
+        "thing_type": "877827cc-0c78-4e55-80fe-2941479c681a"
+        }' \
+    'http://localhost:9000/api/v1/things' > thing.info
+```
+
+## Send Message
+
+curl -H "Content-Type: application/json" -X POST -d '{"msgs":[]}' http://localhost:9000/api/v1/messages/123
+
+## Get your JWT Token:
+
+```
+curl -X POST \
+    -H 'Content-Type: application/json' \
+    -H 'Accept: application/json' \
+    -d '{
+        "email": "<your-email-address>",
+        "password": "<your-password>"
+        }' \
+    'https://connect.geeny.io/auth/login/' | jq -r '.token' > geeny.token
+```
