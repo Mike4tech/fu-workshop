@@ -165,3 +165,12 @@ curl -X POST \
         }' \
     'https://connect.geeny.io/auth/login/' | jq -r '.token' > geeny.token
 ```
+
+# Appendix A. Setup USB Internet for Raspberry Pi Zero W
+
+From
+[here](https://learn.adafruit.com/turning-your-raspberry-pi-zero-into-a-usb-gadget/ethernet-gadget)
+
+1. Burn Raspbian into the SD Card
+2. Modify config.txt in the boot partition and add: `dtoverlay=dwc2`
+3. Modify cmdline.txt and add `modules-load=dwc2,g_ether` after `rootwait`
