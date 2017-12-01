@@ -28,7 +28,7 @@ missiles ;)
 
 ## Plugging everything together.
 
-![Schematic](./slides/images/Button-Sketch.png | width=200)
+![Schematic](./slides/images/Button-Sketch.png width="200")
 
 ### First Attempt
 
