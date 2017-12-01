@@ -161,7 +161,7 @@ From
 ```bash
 curl https://sh.rustup.rs -sSf | sh
 rustup component add rust-src
-rustup install nightly-2017-10-25
+rustup install nightly-2017-10-25 # Use the latest version
 rustup target add armv7-unknown-linux-gnueabihf
 cargo install --vers 0.3.8 xargo
 cargo install cross
