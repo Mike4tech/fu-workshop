@@ -1,4 +1,4 @@
-# Raspberry PI Workshop for the Freie Universitat
+# RPI Workshop for the Freie Universitat
 
 ## Introduction
 
@@ -144,7 +144,7 @@ except KeyboardInterrupt:
 
 
 
-# Appendix A. Setup USB Internet for Raspberry Pi Zero W
+# Appendix A. Setup USB Internet for RPI Zero W
 
 From
 [here](https://learn.adafruit.com/turning-your-raspberry-pi-zero-into-a-usb-gadget/ethernet-gadget)
