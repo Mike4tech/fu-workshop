@@ -70,8 +70,10 @@ try:
 
 # Takes care of cleaning up after is done
 except KeyboardInterrupt:
-    print "Keyboard Interrupt: Exit"
-    GPIO.cleanup()
+  pass
+finally:
+  print "Exit: Cleanup"
+  GPIO.cleanup()
 ```
 
 Test your code in the Raspberry Pi
@@ -118,8 +120,10 @@ try:
     pause()
 
 except KeyboardInterrupt:
-    print "Keyboard Interrupt: Exit"
-    GPIO.cleanup()
+  pass
+finally:
+  print "Exit: Cleanup"
+  GPIO.cleanup()
 ```
 
 ## Step 4. Make it do something cool!
