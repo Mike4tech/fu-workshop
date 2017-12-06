@@ -28,11 +28,13 @@ missiles ;)
 
 ### Check that the Geeny Hub is running by calling:
 
+You can create a Geeny Dev account
+[here](https://labs.geeny.io/register/developer?next=https%3A%2F%2Fdevelopers.geeny.io%2F)
+
 `curl -H "Content-Type: application/json"\
       -X POST -d '{"email":"<your-user>","password":"<your-password>"}'\
 	  http://localhost:9000/api/v1/login`
 
-You can create a Geeny Dev account [here](https://labs.geeny.io/register/developer?next=https%3A%2F%2Fdevelopers.geeny.io%2F)
 
 ## Step 1: Plugging everything together.
 
@@ -62,7 +64,7 @@ GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 try:
   while True:
-	  # 23 is the pin number based on BCM we wanted.
+      # 23 is the pin number based on BCM we wanted.
       if GPIO.input(23):
           print("Button 1 pressed")
 
@@ -72,10 +74,12 @@ except KeyboardInterrupt:
     GPIO.cleanup()
 ```
 
-Copy the program into your RPI Zero:
+Test your code in the Raspberry Pi
 
 ```bash
+# Copy the file
 $ scp button.py pi@raspberrypi.local:~/
+# Run the code:
 $ ssh pi@raspberrypi.local
 $ python button.py
 ```
@@ -120,7 +124,11 @@ except KeyboardInterrupt:
 
 ## Step 4. Make it do something cool!
 
-[From twilio's documentation:](https://www.twilio.com/docs/api/messaging/send-messages#messaging-services)
+[From twilio's
+documentation:](https://www.twilio.com/docs/api/messaging/send-messages#messaging-services)
+
+A common solution we have seen is SMS powered emergency button for the care of the
+elderly.
 
 ```
 import RPi.GPIO as GPIO
