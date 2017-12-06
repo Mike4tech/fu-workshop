@@ -1,0 +1,18 @@
+[Unit]
+Description=The Geeny Hub Daemon
+After=syslog.target network.target
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi
+PrivateTmp=true
+Type=simple
+Restart=always
+RestartSec=1min
+StandardOutput=/var/log/geeny/output.log
+StandardError=/var/log/geeny/error.log
+ExecStart=/home/pi/geeny-hub
+ExecStop=/usr/bin/killall geeny-hub
+
+[Install]
+WantedBy=multi-user.target
