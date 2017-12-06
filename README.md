@@ -130,7 +130,7 @@ documentation:](https://www.twilio.com/docs/api/messaging/send-messages#messagin
 A common solution we have seen is SMS powered emergency button for the care of the
 elderly.
 
-```
+```python
 import RPi.GPIO as GPIO
 import time
 import os
