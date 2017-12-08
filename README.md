@@ -106,9 +106,6 @@ import time
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
-def pause():
-    time.sleep(0.1)
-
 try:
   while True:
     if GPIO.input(23):
@@ -117,7 +114,7 @@ try:
             if not GPIO.input(23):
                 print("Button released")
 		break
-    pause()
+    time.sleep(0.1)
 
 except KeyboardInterrupt:
   pass
@@ -156,9 +153,6 @@ def send_alert():
     body="Diego! RED ALERT!")
   print("Sent: ", message.sid)
 
-def pause():
-    time.sleep(0.1)
-
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
@@ -168,7 +162,7 @@ try:
       while GPIO.input(23):
         pass
       send_alert()
-    pause()
+	time.sleep(0.1)
 
 except KeyboardInterrupt:
   pass
@@ -179,4 +173,77 @@ finally:
 
 ## Step 5. Make it Geeny Enabled!
 
-TBD:
+We'll need to create a device with a serial number using the following snippet:
+
+```bash
+curl -X POST \
+    -H 'Content-Type: application/json' \
+    -H 'Accept: application/json' \
+    -d '{
+        "name": "<name-of-your-thing>",
+        "serial_number": "123",
+        "thing_type": "877827cc-0c78-4e55-80fe-2941479c681a"
+        }' \
+    'http://localhost:9000/api/v1/things' > thing.info
+```
+
+And now we can use our geeny-hub image to publish a message whenever the button is
+pressed.
+
+```python
+import RPi.GPIO as GPIO
+import time
+import os
+import requests
+import json
+
+# Fill these in.
+EMAIL=""
+PASSWORD=""
+SERIAL_NUMBER=""
+
+# Call the login function of the SDK. It requires a user-password.
+def login():
+  url = 'http://localhost:9000/api/v1/login'
+  payload = json.dumps({'email': EMAIL, 'password': PASSWORD})
+  headers = {'Content-Type': 'application/json'}
+  response = requests.post(url, data=payload, headers=headers)
+  return response.text == "success"
+
+# A small wrapper around the publish endpoint of the SDK.
+def publish():
+  print("publishing message...")
+  url = 'http://localhost:9000/api/v1/messages/' + SERIAL_NUMBER
+  payload = json.dumps({'msgs': []})
+  headers = {'Content-Type': 'application/json'}
+  response = requests.post(url, data=payload, headers=headers)
+  print(response.text)
+
+def send_alert():
+  publish()
+
+def setup():
+  if login():
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    print("GPIO setup done")
+  else:
+    raise "error in login"
+
+def run():
+  while True:
+    if GPIO.input(23):
+      while GPIO.input(23):
+        pass
+      send_alert()
+    time.sleep(0.1)
+
+try:
+  setup()
+  run()
+except KeyboardInterrupt:
+  pass
+finally:
+  print "Exit: Cleanup"
+  GPIO.cleanup()
+```
