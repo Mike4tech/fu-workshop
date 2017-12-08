@@ -15,7 +15,7 @@ missiles ;)
 ## Step 0: Login to your RPI Zero W.
 
 1. Connect the micro-usb cable to the port labeled "USB". Make sure _NOT_ to use the
-   one labeled PWD.
+   one labeled PWR.
 
 2. You will need Bonjour or similar in your computer. (avahi-daemon in linux)
 
@@ -90,7 +90,7 @@ Press the button. What's the behaviour? Anything wrong?
 
 ### Step 3: Fixing Debouncing
 
-There are multiple points on which the conditions are met. Specially shortly after
+There are multiple points on which the conditions are met. Especially shortly after
 the switch button presses against the contact points.
 
 [Bouncing](https://en.wikipedia.org/wiki/Switch#Contact_bounce)

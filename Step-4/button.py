@@ -5,7 +5,7 @@ import os
 from twilio.rest import Client
 
 # Your Account SID from twilio.com/console
-account_sid = "ACe9554c8d86227045b93590fe140a4d8c"
+account_sid = os.environ["TWILIO_SID"]
 # Your Auth Token from twilio.com/console
 auth_token  = os.environ["TWILIO_SECRET"]
 
@@ -14,7 +14,7 @@ client = Client(account_sid, auth_token)
 def send_alert():
   message = client.messages.create(
     to="+4917627295457",
-    from_="+18312221512",
+    from_="+18312221512", # Provisioned through Twilio's Web UI
     body="Diego! RED ALERT!")
   print("Sent: ", message.sid)
 

@@ -92,31 +92,176 @@
           <section data-background="images/dash-button.jpg">
 	  </section>
 
-          <section data-background="images/limit-switch.jpg">
+          <section>
+	    <h1>Simple Mechanical Sensors are Buttons</h1>
+	    <img src="images/limit-switch.jpg" width="30%"></img>
+	    <img src="images/limit-switch-2.jpg" width="30%"></img>
 	  </section>
 
-          <section data-background="images/limit-switch-2.jpg">
+          <section>
+	    <img src="images/nuclear-button.jpg" width="50%"></img>
 	  </section>
+	</section>
 
-          <section data-background="images/nuclear-button.jpg">
+	<section>
+	  <section>
+	    <h1>Let's write some code!</h1>
 	  </section>
 
 	  <section>
-	    <h1>First Version</h1>
+	    <pre style="width: 40%"><code data-trim>
+import RPi.GPIO as GPIO
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+
+try:
+  while True:
+      if GPIO.input(23):
+          print("Button 1 pressed")
+
+except KeyboardInterrupt:
+  pass
+finally:
+  print "Exit: Cleanup"
+  GPIO.cleanup()
+	    </code></pre>
 	  </section>
 
 	  <section>
-	    <h1>Gotcha, is really fast</h1>
+	    <h1>Gotcha, Too fast!</h1>
+
+	    <pre style="width: 40%; background: black">
+Button 1 pressed
+Button 1 pressed
+Button 1 pressed
+Button 1 pressed
+Button 1 pressed
+Button 1 pressed
+Button 1 pressed
+...
+	    </pre>
+	  </section>
+
+	  <section>
+	    <h1>Second Version</h1>
+
+	    <pre style="width: 40%"><code data-trim>
+import RPi.GPIO as GPIO
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+
+try:
+  while True:
+    if GPIO.input(23):
+      print("Button pressed")
+      while GPIO.input(23):
+        pass
+      print("Button released")
+
+except KeyboardInterrupt:
+  pass
+finally:
+  print "Exit: Cleanup"
+  GPIO.cleanup()
+	    </code></pre>
 	  </section>
 
 	  <section>
 	    <h1>Gotcha (2), bouncing signal</h1>
+	    <pre style="width: 40%; background: black">
+Button pressed
+Button released
+Button pressed
+Button released
+Button pressed
+...
+	    </pre>
+	  </section>
+
+	  <section>
+	    <h1>Bouncing (2)</h1>
+	    <img src="images/bouncing.png" width="70%"></img>
+	  </section>
+
+	  <section>
+	    <h1>It Works!</h1>
+	    <pre style="width: 40%"><code data-trim>
+import RPi.GPIO as GPIO
+import time
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+
+def pause():
+    time.sleep(0.1)
+
+try:
+  while True:
+    if GPIO.input(23):
+      print("Button pressed")
+      while GPIO.input(23):
+        pass
+      print("Button released")
+    pause()
+
+except KeyboardInterrupt:
+  pass
+finally:
+  print "Exit: Cleanup"
+  GPIO.cleanup()
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <h1>Making it an Emergency Button:</h1>
+	    <pre style="width: 50%"><code data-trim>
+import RPi.GPIO as GPIO
+import time
+import os
+from twilio.rest import Client
+
+account_sid = os.environ["TWILIO_SID"]
+auth_token  = os.environ["TWILIO_SECRET"]
+client = Client(account_sid, auth_token)
+
+def send_alert():
+  message = client.messages.create(
+    to="+4917627295457",
+    from_="+18312221512", # Provisioned through Twilio's Web UI
+    body="Diego! RED ALERT!")
+  print("Sent: ", message.sid)
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+
+try:
+  while True:
+    if GPIO.input(23):
+      while GPIO.input(23):
+        pass
+      send_alert()
+    time.sleep(0.1)
+
+except KeyboardInterrupt:
+  pass
+finally:
+  print "Exit: Cleanup"
+  GPIO.cleanup()
+	    </code></pre>
 	  </section>
 	</section>
 
 	<section>
 	  <section>
 	    <h1>Connect the Button to Geeny</h1>
+	  </section>
+
+	  <section>
+	    <h1>Why Geeny?</h1>
+
+	    <img src="images/geeny-diagram.png" style="width: 90%"></img>
 	  </section>
 
 	  <section>
