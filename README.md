@@ -43,7 +43,7 @@ You will need only 2 cables and a switch button.
 - The input goes to the GPIO 23 (i.e second column. 8th row. Counting from top to bottom)
 - And the power (first column, first row)
 
-<img src="./slides/images/Button-Sketch.png" width="240"/>
+<img src="./slides/images/piSketch.png" width="240"/>
 
 ## Step 2: GPIO Getting Started
 
