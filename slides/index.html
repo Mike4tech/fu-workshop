@@ -109,7 +109,7 @@
 	  </section>
 
 	  <section>
-	    <pre style="width: 40%"><code data-trim>
+	    <pre style="width: 60%"><code data-trim>
 import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BCM)
@@ -146,7 +146,7 @@ Button 1 pressed
 	  <section>
 	    <h1>Second Version</h1>
 
-	    <pre style="width: 40%"><code data-trim>
+	    <pre style="width: 60%"><code data-trim>
 import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BCM)
@@ -187,7 +187,7 @@ Button pressed
 
 	  <section>
 	    <h1>It Works!</h1>
-	    <pre style="width: 40%"><code data-trim>
+	    <pre style="width: 60%"><code data-trim>
 import RPi.GPIO as GPIO
 import time
 
@@ -215,8 +215,8 @@ finally:
 	  </section>
 
 	  <section>
-	    <h1>Making it an Emergency Button:</h1>
-	    <pre style="width: 50%"><code data-trim>
+	    <h1>Making it an Emergency Button (1)</h1>
+	    <pre style="width: 60%"><code data-trim>
 import RPi.GPIO as GPIO
 import time
 import os
@@ -229,10 +229,14 @@ client = Client(account_sid, auth_token)
 def send_alert():
   message = client.messages.create(
     to="+4917627295457",
-    from_="+18312221512", # Provisioned through Twilio's Web UI
+    from_="+18312221512",
     body="Diego! RED ALERT!")
   print("Sent: ", message.sid)
-
+	    </code></pre>
+	  </section>
+	  <section>
+	    <h1>Making it an Emergency Button (2)</h1>
+	    <pre style="width: 60%"><code data-trim>
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
@@ -262,18 +266,70 @@ finally:
 	    <h1>Why Geeny?</h1>
 
 	    <img src="images/geeny-diagram.png" style="width: 90%"></img>
+	    <h2 class="fragment">Hardware | Software</h2>
 	  </section>
 
 	  <section>
-	    <h1>Signup</h1>
+	    <h1>Register Device</h1>
+	    <pre style="width: 70%"><code data-trim>
+curl -X POST \
+    -H 'Content-Type: application/json' \
+    -H 'Accept: application/json' \
+    -d '{
+        "name": "<name-of-your-thing>",
+        "serial_number": "123",
+        "thing_type": "877827cc-0c78-4e55-80fe-2941479c681a"
+        }' \
+    'http://localhost:9000/api/v1/things' > thing.info
+	    </code></pre>
 	  </section>
 
 	  <section>
-	    <h1>Login (from the RPI)</h1>
+	    <h1>Login</h1>
+	  </section>
+
+	  <section>
+	    <h1>Code</h1>
+	    <pre style="width: 80%"><code data-trim>
+def login():
+    url = 'http://localhost:9000/api/v1/login'
+    payload = json.dumps({'email': EMAIL, 'password': PASSWORD})
+    headers = {'Content-Type': 'application/json'}
+    response = requests.post(url, data=payload, headers=headers)
+    return response.text == "success"
+	    </code></pre>
 	  </section>
 
 	  <section>
 	    <h1>Publish a Message</h1>
+	  </section>
+
+	  <section>
+	    <pre style="width: 80%"><code data-trim>
+def publish():
+    print("publishing message...")
+    url = 'http://localhost:9000/api/v1/messages/' + SERIAL_NUMBER
+    payload = json.dumps({'msgs': []})
+    headers = {'Content-Type': 'application/json'}
+    response = requests.post(url, data=payload, headers=headers)
+    print(response.text)
+	    </code></pre>
+	  </section>
+	</section>
+
+	<section>
+	  <section>
+	    <h1>Summary</h1>
+	    <ol>
+	      <li class="fragment">Getting Started with IoT is very Easy</li>
+              <li class="fragment">IoT development is better using a platform like
+              Geeny</li>
+    	    </ol>
+	  </section>
+
+	  <section>
+	    <h1>The End</h1>
+	    <small>Questions and Feedback is always welcome: diego@geeny.io</small>
 	  </section>
 	</section>
       </div>
