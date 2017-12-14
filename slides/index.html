@@ -114,6 +114,13 @@
           <section>
 	    <img src="images/nuclear-button.jpg" width="50%"></img>
 	  </section>
+
+	  <section>
+	    <h1>Why Geeny?</h1>
+
+	    <img src="images/geeny-diagram.png" style="width: 90%"></img>
+	    <h2 class="fragment">Hardware | Software</h2>
+	  </section>
 	</section>
 
 	<section>
@@ -122,22 +129,30 @@
 	  </section>
 
 	  <section>
-	    <h1>All workshop materials are available at:</h1>
+	    <h1>Materials at:</h1>
 	    <a href="https://github.com/geeny/fu-workshop">https://github.com/geeny/fu-workshop</a>
 	  </section>
 
 	  <section>
 	    <h1>Step 0: Connect to your Rpi</h1>
-	    <pre style="width: 40%; background: black">
-	      ssh pi@geeny1.local
-	      curl -H "Content-Type: application/json" -X POST -d
-	      '{"email":"<your-user>","password":"<your-password>"}'
-		  http://localhost:9000/api/v1/login
-              >> success
+	    <pre style="width: 70%; background: black">
+ssh pi@geeny1.local
+curl -H "Content-Type: application/json" -X POST -d
+'{"email":"<your-user>","password":"<your-password>"}'
+	  http://localhost:9000/api/v1/login
+>> success
 	    </pre>
 	  </section>
 
 	  <section>
+	    <h1>Step 1: Plug Everything</h1>
+	    <img src="images/piSketch.jpg" width="50%"></img>
+
+	  </section>
+
+	  <section>
+	    <h1>Step 2: GPIO Intro</h1>
+
 	    <pre style="width: 60%"><code data-trim>
 import RPi.GPIO as GPIO
 
@@ -173,7 +188,7 @@ Button 1 pressed
 	  </section>
 
 	  <section>
-	    <h1>Second Version</h1>
+	    <h1>Step 3: Fixing Debouncing</h1>
 
 	    <pre style="width: 60%"><code data-trim>
 import RPi.GPIO as GPIO
@@ -198,7 +213,7 @@ finally:
 	  </section>
 
 	  <section>
-	    <h1>Gotcha (2), bouncing signal</h1>
+	    <h1>Active Blocking</h1>
 	    <pre style="width: 40%; background: black">
 Button pressed
 Button released
@@ -244,7 +259,7 @@ finally:
 	  </section>
 
 	  <section>
-	    <h1>Making it an Emergency Button (1)</h1>
+	    <h1>Making an Emergency Button (1)</h1>
 	    <pre style="width: 60%"><code data-trim>
 import RPi.GPIO as GPIO
 import time
@@ -263,6 +278,7 @@ def send_alert():
   print("Sent: ", message.sid)
 	    </code></pre>
 	  </section>
+
 	  <section>
 	    <h1>Making it an Emergency Button (2)</h1>
 	    <pre style="width: 60%"><code data-trim>
@@ -284,18 +300,20 @@ finally:
   GPIO.cleanup()
 	    </code></pre>
 	  </section>
+
+	  <section>
+	    <h1>Making it an Emergency Button (3)</h1>
+	    <pre style="width: 80%; background: black">
+TWILIO_SID=ACe9554c8d86227045b93590fe140a4d8c \
+TWILIO_SECRET=139077208f75e79d76ddc8cd644358ae python button.py
+	    </pre>
+	  </section>
+
 	</section>
 
 	<section>
 	  <section>
 	    <h1>Connect the Button to Geeny</h1>
-	  </section>
-
-	  <section>
-	    <h1>Why Geeny?</h1>
-
-	    <img src="images/geeny-diagram.png" style="width: 90%"></img>
-	    <h2 class="fragment">Hardware | Software</h2>
 	  </section>
 
 	  <section>
@@ -334,6 +352,7 @@ def login():
 	  </section>
 
 	  <section>
+	    <h1>Code</h1>
 	    <pre style="width: 80%"><code data-trim>
 def publish():
     print("publishing message...")
