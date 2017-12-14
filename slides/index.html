@@ -46,11 +46,21 @@
 	    <h1>This Presentation</h1>
     	    <ol>
 	      <li class="fragment">What is IoT?</li>
-              <li class="fragment">Make a Button</li>
-              <li class="fragment">Connect the Button to Geeny</li>
+              <li class="fragment">What Geeny does?</li>
+
     	    </ol>
 	  </section>
-        </section>
+
+	  <section>
+	    <h1>The Workshop!</h1>
+	    <ol>
+	      <li class="fragment">Connect to the Rpi Zero</li>
+	      <li class="fragment">GPIO Programming</li>
+	      <li class="fragment">Use Twilio SMS service</li>
+	      <li class="fragment">Make it Geeny Enabled</li>
+	    </ol>
+	  </section>
+	</section>
 
 	<section>
 	  <section>
@@ -76,6 +86,9 @@
           </section>
 
           <section data-background="images/orange_pi.png">
+          </section>
+
+          <section data-background="images/pi-hole.png" data-background-size="50%">
           </section>
 
           <section>
@@ -105,7 +118,23 @@
 
 	<section>
 	  <section>
-	    <h1>Let's write some code!</h1>
+	    <h1>Workshop Time!</h1>
+	  </section>
+
+	  <section>
+	    <h1>All workshop materials are available at:</h1>
+	    <a href="https://github.com/geeny/fu-workshop">https://github.com/geeny/fu-workshop</a>
+	  </section>
+
+	  <section>
+	    <h1>Step 0: Connect to your Rpi</h1>
+	    <pre style="width: 40%; background: black">
+	      ssh pi@geeny1.local
+	      curl -H "Content-Type: application/json" -X POST -d
+	      '{"email":"<your-user>","password":"<your-password>"}'
+		  http://localhost:9000/api/v1/login
+              >> success
+	    </pre>
 	  </section>
 
 	  <section>

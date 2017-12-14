@@ -12,29 +12,38 @@ We'll implement a very simple button. What the button does is up to you. If you 
 make it print something on activation, you can also make it launch the zombie killing
 missiles ;)
 
-## Step 0: Login to your RPI Zero W.
+## Step 0: SSH to your RPI Zero W.
 
-1. Connect the micro-usb cable to the port labeled "USB". Make sure _NOT_ to use the
-   one labeled PWR.
+### Requirements:
 
-2. You will need Bonjour or similar in your computer. (avahi-daemon in linux)
+- Windows:
+You might need to install an ssh client like [Putty](http://www.putty.org/)
 
-3. Connect to the USB-Ethernet:
+- Linux/OSX: Open a terminal.
 
-	- Ubuntu: In the network manager connect to the USB wired connection.
-	- Go to NetworkManager, in the tab IPv4-settings set Method to `Link-Local Only`
+### Join the network
 
-4. Do: `ssh pi@raspberrypi.local`. Password `raspberry`
+Join to the `Telefonica NEXT Guest` SSID with password "geenyguest".
 
-### Check that the Geeny Hub is running by calling:
+Your rapberry pi zero should be pre-configured to connect to `Telefonica NEXT
+Guest` and it uses Bonjour to broadcast its hostname.
+
+Once connected you can just type:
+
+```bash
+ssh pi@geeny1.local
+```
+
+Make sure to replace the number with your Raspberry Pi number.
+
+#### Check that the Geeny Hub is running:
 
 You can create a Geeny Dev account
 [here](https://labs.geeny.io/register/developer?next=https%3A%2F%2Fdevelopers.geeny.io%2F)
 
-`curl -H "Content-Type: application/json"\
-      -X POST -d '{"email":"<your-user>","password":"<your-password>"}'\
-	  http://localhost:9000/api/v1/login`
-
+```
+curl -H "Content-Type: application/json" -X POST -d '{"email":"<your-user>","password":"<your-password>"}' http://localhost:9000/api/v1/login
+```
 
 ## Step 1: Plugging everything together.
 
@@ -42,6 +51,8 @@ You will need only 2 cables and a switch button.
 
 - The input goes to the GPIO 23 (i.e second column. 8th row. Counting from top to bottom)
 - And the power (first column, first row)
+
+[Use this reference for details on the layout of the pinout](https://pinout.xyz/#)
 
 <img src="./slides/images/piSketch.jpg" width="400"/>
 

@@ -83,3 +83,17 @@ curl -X POST \
         }' \
     'https://connect.geeny.io/auth/login/' | jq -r '.token' > geeny.token
 ```
+
+# Appendix: Using ethernet usb device.
+
+1. Connect the micro-usb cable to the port labeled "USB". Make sure _NOT_ to use the
+   one labeled PWR.
+
+2. You will need Bonjour or similar in your computer. (avahi-daemon in linux)
+
+3. Connect to the USB-Ethernet:
+
+	- Ubuntu: In the network manager connect to the USB wired connection.
+	- Go to NetworkManager, in the tab IPv4-settings set Method to `Link-Local Only`
+
+4. Do: `ssh pi@raspberrypi.local`. Password `raspberry`
